@@ -10,11 +10,11 @@ import { useState } from "react";
 function BlackboardGame() {
 
     const round = rounds["1"];
-    const [plays, setPlays] = useState({
-        3: ["AMO", "ESA", "ESO", "LOA", "MAL"], 
-        4: ["LEMA", "LOMA", "LOSA"], 
-        5: [], 
-        6: ["MELOSA"] 
+    const [plays, setPlays] = useState({ 
+        3: [],
+        4: [],
+        5: [],
+        6: [],
     });
 
     const [playedLetters, setPlayedLetters] = useState([])
