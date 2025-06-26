@@ -1,9 +1,18 @@
 import './App.css'
 
+import BlackboardGame from "./blackboard/BlackboardGame";
+
 
 function App() {
   return (
-    <div>Games!</div>
+    <>
+      <header>
+        Juegos
+      </header>
+      <section>
+        <BlackboardGame />
+      </section>
+    </>
   )
 }
 
