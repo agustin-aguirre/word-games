@@ -4,11 +4,18 @@ import PlayedLetters from "./components/PlayedLetters";
 import PlayedWords from "./components/PlayedWords"
 
 import {rounds} from "./data/data";
+import { useState } from "react";
 
 
 function BlackboardGame() {
 
     const round = rounds["1"];
+    const [plays, setPlays] = useState({
+        3: ["AMO", "ESA", "ESO", "LOA", "MAL"], 
+        4: ["LEMA", "LOMA", "LOSA"], 
+        5: [], 
+        6: ["MELOSA"] 
+    });
 
     function onPlayerInput({word}) {
 
@@ -16,11 +23,17 @@ function BlackboardGame() {
 
     function onPlayerSubmitWord({word}) {
         const length = word.length;
-        if (round.words[length].includes(word)) {
-            console.log("SÍ")
-        }
-        else{
-            console.log("NO")
+        const isValidWord = round.words[length].includes(word);
+        if (isValidWord) {
+            const wordAlreadyPlayed = plays[length].includes(word);
+            if (!wordAlreadyPlayed) {
+                setPlays(prev => {
+                    return {
+                        ...prev,
+                        [length]: [...prev[length], word]
+                    }
+                });
+            }
         }
     }
 
@@ -33,13 +46,7 @@ function BlackboardGame() {
                 <PlayerInput onChange={onPlayerInput} onSubmit={onPlayerSubmitWord} />
                 <PlayedLetters />
                 <PlayedWords 
-                played={
-                    {
-                        3: ["AMO", "ESA", "ESO", "LOA", "MAL"], 
-                        4: ["LEMA", "LOMA", "LOSA"], 
-                        5:[], 
-                        6:["MELOSA"] 
-                    }} 
+                played={plays} 
                 all={round.words}
                 />
             </div>
