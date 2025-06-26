@@ -5,18 +5,18 @@ import PlayedWords from "./components/PlayedWords"
 
 
 function BlackboardGame() {
-    return (
-        <>
-            <h1>
-                "The Blackboard Game"
-            </h1>
-            <div>
-                <PlayerInput />
-                <PlayedLetters />
-                <PlayedWords />
-            </div>
-        </>
-    );
+    return <>
+    <div>
+        <h1>
+            "The Blackboard Game"
+        </h1>
+        <div className="game-loop-container">
+            <PlayerInput />
+            <PlayedLetters />
+            <PlayedWords />
+        </div>
+    </div>
+    </>
 }
 
 

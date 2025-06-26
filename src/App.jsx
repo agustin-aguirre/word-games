@@ -10,7 +10,9 @@ function App() {
         Juegos
       </header>
       <section>
-        <BlackboardGame />
+        <div className="game-container">
+          <BlackboardGame />
+        </div>
       </section>
     </>
   )
