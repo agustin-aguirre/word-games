@@ -1,13 +1,10 @@
-function PlayedLetters() {
+function PlayedLetters({played, all}) {
     return <>
         <div>
             <ul>
-                <li>a</li>
-                <li>e</li>
-                <li>l</li>
-                <li>m</li>
-                <li>o</li>
-                <li>s</li>
+                {all.filter(letter => !played.includes(letter)).map(letter => {
+                    return <li>{letter}</li>
+                })}
             </ul>
         </div>
     </>

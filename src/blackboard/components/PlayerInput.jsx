@@ -1,30 +1,34 @@
 import { useState } from "react";
 
+
 function PlayerInput({onChange, onSubmit}) {
 
     const [formData, setFormData] = useState({ word: "" });
 
+    function updateFormData(value) {
+        const updatedFormData = {
+            ...formData,
+            word: value.toUpperCase()
+        };
+        setFormData(updatedFormData);
+        onChange(updatedFormData);
+    }
 
-    function handleOnChange(value) {
-        setFormData(prev => {
-            return {
-                ...prev,
-                word: value.toUpperCase()
-            }
-        });
-        onChange(formData);
+    function handleOnChange(event) {
+        updateFormData(event.target.value);
     }
 
     function handleOnSubmit(event) {
         event.preventDefault();
-        onSubmit(formData);
-        setFormData({word: ""})
+        const currentFormData = {...formData}
+        onSubmit(currentFormData);
+        updateFormData("");
     }
 
     return (
         <div>
             <form onSubmit={handleOnSubmit}>
-                <input type="text" value={formData.word} onChange={e => handleOnChange(e.target.value)} />
+                <input type="text" value={formData.word} onChange={handleOnChange} />
                 <input type="submit" />
             </form>
         </div>

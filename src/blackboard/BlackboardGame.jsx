@@ -17,8 +17,10 @@ function BlackboardGame() {
         6: ["MELOSA"] 
     });
 
-    function onPlayerInput({word}) {
+    const [playedLetters, setPlayedLetters] = useState([])
 
+    function onPlayerInput({word}) {
+        setPlayedLetters(word.split(""));
     }
 
     function onPlayerSubmitWord({word}) {
@@ -44,7 +46,7 @@ function BlackboardGame() {
             </h1>
             <div className="game-loop-container">
                 <PlayerInput onChange={onPlayerInput} onSubmit={onPlayerSubmitWord} />
-                <PlayedLetters />
+                <PlayedLetters played={playedLetters} all={round.letters}/>
                 <PlayedWords 
                 played={plays} 
                 all={round.words}
