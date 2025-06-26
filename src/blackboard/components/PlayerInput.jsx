@@ -1,11 +1,21 @@
 import { useState } from "react";
 
 
-function PlayerInput({onChange, onSubmit}) {
+function PlayerInput({allowed, onChange, onSubmit}) {
 
     const [formData, setFormData] = useState({ word: "" });
 
+
     function updateFormData(value) {
+        const preparedValue = value.toUpperCase();    
+        const enteredChars = preparedValue.split("");
+        const currentChar = preparedValue.length > 0? enteredChars.at(-1) : "";
+
+        if (currentChar != "" && !allowed.includes(currentChar)) {
+            console.log(`Pressed not allowed char: ${currentChar}`);
+            return;
+        }
+
         const updatedFormData = {
             ...formData,
             word: value.toUpperCase()
@@ -14,6 +24,7 @@ function PlayerInput({onChange, onSubmit}) {
         onChange(updatedFormData);
     }
 
+    
     function handleOnChange(event) {
         updateFormData(event.target.value);
     }

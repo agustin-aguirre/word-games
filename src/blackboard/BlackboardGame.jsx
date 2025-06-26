@@ -45,7 +45,11 @@ function BlackboardGame() {
                 "The Blackboard Game"
             </h1>
             <div className="game-loop-container">
-                <PlayerInput onChange={onPlayerInput} onSubmit={onPlayerSubmitWord} />
+                <PlayerInput
+                allowed={round.letters}
+                onChange={onPlayerInput}
+                onSubmit={onPlayerSubmitWord}
+                />
                 <PlayedLetters played={playedLetters} all={round.letters}/>
                 <PlayedWords 
                 played={plays} 
