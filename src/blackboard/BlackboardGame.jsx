@@ -32,7 +32,16 @@ function BlackboardGame() {
             <div className="game-loop-container">
                 <PlayerInput onChange={onPlayerInput} onSubmit={onPlayerSubmitWord} />
                 <PlayedLetters />
-                <PlayedWords />
+                <PlayedWords 
+                played={
+                    {
+                        3: ["AMO", "ESA", "ESO", "LOA", "MAL"], 
+                        4: ["LEMA", "LOMA", "LOSA"], 
+                        5:[], 
+                        6:["MELOSA"] 
+                    }} 
+                all={round.words}
+                />
             </div>
         </div>
     );

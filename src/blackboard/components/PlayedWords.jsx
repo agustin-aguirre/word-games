@@ -1,44 +1,35 @@
 function PlayedWords({played, all}) {
+
+    const PlayedWordDisplay = ({word, isPlayed}) => {
+        return <li>{isPlayed? word : "_ ".repeat(word.length)}</li>
+    }
+
+    const PlayedWordsGroup = ({played, all}) => {
+        return (
+            <ul>
+                {all.map(word => 
+                    <PlayedWordDisplay 
+                    word={word} 
+                    isPlayed={played.includes(word)} 
+                />)}
+            </ul>
+        );
+    }
+
     return (
         <div>
-            <div>
-                <ul>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>----</li>
-                    <li>----</li>
-                    <li>----</li>
-                    <li>----</li>
-                    <li>----</li>
-                    <li>----</li>
-                    <li>----</li>
-                    <li>----</li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>-----</li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>------</li>
-                </ul>
-            </div>
+            {
+                Object.keys(all).map(length => {
+                    return (
+                        <div>
+                            <PlayedWordsGroup
+                            played={played[length]}
+                            all={all[length]}
+                            />
+                        </div>
+                    );
+                })
+            }
         </div>
     );
 }
