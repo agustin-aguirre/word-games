@@ -18,6 +18,7 @@ function PlayerInput({onChange, onSubmit}) {
     function handleOnSubmit(event) {
         event.preventDefault();
         onSubmit(formData);
+        setFormData({word: ""})
     }
 
     return (
