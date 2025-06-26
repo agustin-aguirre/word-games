@@ -1,6 +1,7 @@
-import PlayedWords from "./components/PlayedWords"
-import PlayedLetters from "./components/PlayedLetters";
+import "./blackboard-game.css";
 import PlayerInput from "./components/PlayerInput"
+import PlayedLetters from "./components/PlayedLetters";
+import PlayedWords from "./components/PlayedWords"
 
 
 function BlackboardGame() {
