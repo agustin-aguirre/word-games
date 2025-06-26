@@ -3,7 +3,7 @@ export const rounds = {
         letters: ["A", "E", "L", "M", "O", "S"],
         words: {
             3: ["AMO", "ESA", "ESO", "LOA", "MAL", "MES", "OLA", "OLE", "OSA", "SAL", "SOL", "MAS"],
-            4: ["LEMA", "LOMA", "LOSA", "MESA", "MALO", "MOLE", "SOLA", "ALO"],
+            4: ["LEMA", "LOMA", "LOSA", "MESA", "MALO", "MOLE", "SOLA", "ALOS"],
             5: ["SALMO"],
             6: ["MELOSA"]
         }
