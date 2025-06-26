@@ -1,4 +1,4 @@
-function PlaysStatus({played, all}) {
+function PlayedWords({played, all}) {
     return (
         <div>
             <div>
@@ -44,4 +44,4 @@ function PlaysStatus({played, all}) {
 }
 
 
-export default PlaysStatus;
+export default PlayedWords;

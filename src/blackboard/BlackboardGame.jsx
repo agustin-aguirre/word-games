@@ -1,4 +1,4 @@
-import PlaysStatus from "./components/PlaysStatus"
+import PlayedWords from "./components/PlayedWords"
 import PlayedLetters from "./components/PlayedLetters";
 import PlayerInput from "./components/PlayerInput"
 
@@ -12,7 +12,7 @@ function BlackboardGame() {
             <div>
                 <PlayerInput />
                 <PlayedLetters />
-                <PlaysStatus />
+                <PlayedWords />
             </div>
         </>
     );
