@@ -20,13 +20,19 @@ function BlackboardGame() {
                 "The Blackboard Game"
             </h1>
             <RoundConfigProvider roundNumber={roundNumber}>
-            <PlayerRoundProvider>
-                <Game/>
+            <PlayerRoundProvider key={roundNumber}>
+                <Game />
             </PlayerRoundProvider>
             </RoundConfigProvider>
             <div style={{marginTop: "10px"}}>
-                <button onClick={() => moveToNextRound(-1)}>Prev Round</button>
-                <button onClick={() => moveToNextRound( 1)}>Next Round</button>
+                {
+                    roundNumber - 1 > 0 && 
+                        <button onClick={() => moveToNextRound(-1)}>Prev Round</button>
+                }
+                {
+                    roundNumber + 1 < 6 &&
+                        <button onClick={() => moveToNextRound(1)}>Next Round</button>
+                }
             </div>
         </div>
     );
