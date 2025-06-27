@@ -3,6 +3,8 @@
     align-items: flex-start;
     justify-content: space-between;
     background-color: seashell;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 3px;
 }
 
 .played-words-group {

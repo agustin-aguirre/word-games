@@ -4,7 +4,7 @@ import "./played-words.css";
 function PlayedWords({played, all}) {
 
     const PlayedWordDisplay = ({word, isPlayed}) => {
-        return <li>{isPlayed? word : "_ ".repeat(word.length)}</li>
+        return <li>{isPlayed? word : "_".repeat(word.length)}</li>
     }
 
     const PlayedWordsGroup = ({played, all}) => {
