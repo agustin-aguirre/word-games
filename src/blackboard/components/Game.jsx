@@ -2,10 +2,13 @@ import { useState } from "react";
 import PlayerInput from "./inputs/PlayerInput";
 import PlayedLetters from "./letters/PlayedLetters";
 import PlayedWords from "./words/PlayedWords";
+import { useRoundConfig } from "../contexts/RoundConfigContext";
 
 
-function Game({roundConfig}) {
+function Game() {
     
+    const roundConfig = useRoundConfig();
+
     const [plays, setPlays] = useState({ 
         3: [],
         4: [],
@@ -22,7 +25,7 @@ function Game({roundConfig}) {
 
     function onPlayerSubmitWord({word}) {
         const length = word.length;
-        const isValidWord = roundConfig.words.values[length].includes(word);
+        const isValidWord = roundConfig.words[length].includes(word);
         if (isValidWord) {
             const wordAlreadyPlayed = plays[length].includes(word);
             if (!wordAlreadyPlayed) {
@@ -39,15 +42,11 @@ function Game({roundConfig}) {
     return (
         <div className="game-loop-container">
             <PlayerInput
-            allowed={roundConfig.letters}
             onChange={onPlayerInput}
             onSubmit={onPlayerSubmitWord}
             />
-            <PlayedLetters played={playedLetters} all={roundConfig.letters}/>
-            <PlayedWords 
-            played={plays} 
-            all={roundConfig.words.values}
-            />
+            <PlayedLetters played={playedLetters}/>
+            <PlayedWords played={plays} />
         </div>
     );
 }

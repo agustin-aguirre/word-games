@@ -1,7 +1,10 @@
+import { useRoundConfig } from "../../contexts/RoundConfigContext";
 import "./played-words.css";
 
 
-function PlayedWords({played, all}) {
+function PlayedWords({played}) {
+
+    const allowedWords = useRoundConfig().words;
 
     const PlayedWordDisplay = ({word, isPlayed}) => {
         return <li>{isPlayed? word : "_".repeat(word.length)}</li>
@@ -22,12 +25,12 @@ function PlayedWords({played, all}) {
     return (
         <div className="all-played-words-container">
             {
-                Object.keys(all).map(length => {
+                Object.keys(allowedWords).map(length => {
                     return (
                         <div className="played-words-group">
                             <PlayedWordsGroup
                             played={played[length]}
-                            all={all[length]}
+                            all={allowedWords[length]}
                             />
                         </div>
                     );

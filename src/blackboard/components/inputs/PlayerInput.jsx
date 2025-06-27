@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./player-input.css";
+import { useRoundConfig } from "../../contexts/RoundConfigContext";
 
-function PlayerInput({allowed, onChange, onSubmit}) {
+function PlayerInput({onChange, onSubmit}) {
 
+    const allowedChars = useRoundConfig().letters;
     const [formData, setFormData] = useState({ word: "" });
 
 
@@ -12,13 +14,13 @@ function PlayerInput({allowed, onChange, onSubmit}) {
         const currentChar = preparedValue.length > 0? enteredChars.at(-1) : "";
 
         // detect not allowed chars
-        if (currentChar != "" && !allowed.includes(currentChar)) {
+        if (currentChar != "" && !allowedChars.includes(currentChar)) {
             console.log(`Attempted to enter a non-allowed char: ${currentChar}`);
             return;
         }
 
         // detect exhausted char
-        const countAllowed = allowed.reduce((acc, curr) => acc + (curr === currentChar? 1 : 0), 0);
+        const countAllowed = allowedChars.reduce((acc, curr) => acc + (curr === currentChar? 1 : 0), 0);
         const countEntered = enteredChars.reduce((acc, curr) => acc + (curr === currentChar? 1 : 0), 0);
         if (countAllowed < countEntered) {
             console.log(`Attempted to enter an non-available char: ${currentChar}`);

@@ -1,11 +1,15 @@
+import { useRoundConfig } from "../../contexts/RoundConfigContext";
 import "./played-letters.css";
 
 
-function PlayedLetters({played, all}) {
-    return <>
+function PlayedLetters({ played }) {
+
+    const allowedChars = useRoundConfig().letters;
+
+    return ( 
         <div className="played-letters-container">
             <ul>
-                {all.map(letter => {
+                {allowedChars.map(letter => {
                     const alreadyPlayed = played.includes(letter);
                     const style = {
                         color: alreadyPlayed ? "transparent" : "inherit"
@@ -14,7 +18,7 @@ function PlayedLetters({played, all}) {
                 })}
             </ul>
         </div>
-    </>
+    );
 }
 
 
