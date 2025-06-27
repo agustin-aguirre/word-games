@@ -1,26 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { usePlayerRound } from '../../contexts/PlayerRoundContext';
+
 
 function Stopwatch() {
-    const [seconds, setSeconds] = useState(90);
-    const [isRunning, setIsRunning] = useState(false);
-    const intervalRef = useRef(null);
+    
+    const playerRound = usePlayerRound();
 
-    useEffect(() => {
-        if (isRunning) {
-            intervalRef.current = setInterval(() => {
-                setSeconds(prev => Math.max(0, prev - 1));
-            }, 1000);
-        }
-
-        return () => clearInterval(intervalRef.current);
-    }, [isRunning]);
+    const handlePlay = (value) => {
+        value? playerRound.start() : playerRound.finish();
+    }
 
     return (
         <div>
-            <h1>Timer: {seconds} segundos</h1>
-            <button onClick={() => setIsRunning(true)}>Iniciar</button>
-            <button onClick={() => setIsRunning(false)}>Detener</button>
-            <button onClick={() => { setIsRunning(false); setSeconds(0); }}>Reiniciar</button>
+            <p>Tiempo restante: {playerRound.timeLeft}</p>
+            {
+                playerRound.isPlaying ?
+                <button onClick={() => handlePlay(false)}>Detener</button> :
+                <button onClick={() => handlePlay(true)}>Iniciar</button>
+            }
         </div>
     );
 }

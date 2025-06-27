@@ -16,9 +16,7 @@ function BlackboardGame() {
 
     return (
         <div>
-            <h1>
-                "The Blackboard Game"
-            </h1>
+            <h1>"The Blackboard Game"</h1>
             <RoundConfigProvider roundNumber={roundNumber}>
             <PlayerRoundProvider key={roundNumber}>
                 <Game />

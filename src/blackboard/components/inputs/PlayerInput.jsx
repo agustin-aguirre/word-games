@@ -1,10 +1,13 @@
 import { useState } from "react";
-import "./player-input.css";
 import { useRoundConfig } from "../../contexts/RoundConfigContext";
+import { usePlayerRound } from "../../contexts/PlayerRoundContext";
+import "./player-input.css";
+
 
 function PlayerInput({onChange, onSubmit}) {
 
     const allowedChars = useRoundConfig().letters;
+    const playerRound = usePlayerRound();
     const [formData, setFormData] = useState({ word: "" });
 
 
@@ -50,8 +53,13 @@ function PlayerInput({onChange, onSubmit}) {
     return (
         <div className="player-input-container">
             <form onSubmit={handleOnSubmit}>
-                <input className="word-input-field" type="text" value={formData.word} onChange={handleOnChange} />
-                <input className="word-input-submit" type="submit" />
+            {
+                playerRound.isPlaying &&
+                <>
+                    <input className="word-input-field" type="text" value={formData.word} onChange={handleOnChange} />
+                    <input className="word-input-submit" type="submit" />
+                </>
+            }
             </form>
         </div>
     );

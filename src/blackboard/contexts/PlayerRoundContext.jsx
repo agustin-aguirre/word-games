@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 // contenedor del estado
 export const PlayerRoundContext = createContext(null);
@@ -9,9 +9,24 @@ export const usePlayerRound = () => {
 }
 
 // provider
-export const PlayerRoundProvider = ({ children }) => {
+export const PlayerRoundProvider = ({ totalRoundTime, children }) => {
+    
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(totalRoundTime ?? 90);
     const [guessedWords, setGuessedWords] = useState({});
     const [total, setTotal] = useState(0);
+    
+    const intervalRef = useRef(null);
+    
+    useEffect(() => {
+        if (isPlaying) {
+            intervalRef.current = setInterval(() => {
+                setTimeLeft(prev => Math.max(0, prev - 1));
+            }, 1000);
+        }
+        return () => clearInterval(intervalRef.current);
+    }, [isPlaying]);
+
 
     const addGuessedWord = (word) => {
         const length = word.length;
@@ -28,16 +43,24 @@ export const PlayerRoundProvider = ({ children }) => {
         }
     }
 
-    const reset = () => {
-        setGuessedWords({});
-        setTotal(0);
+
+    const start = () => {
+        setIsPlaying(true);
     }
 
+    const finish = () => {
+        setIsPlaying(false);
+    }
+
+    
     const values = {
+        isPlaying,
+        start,
+        finish,
+        timeLeft,
         guessedWords,
         total,
-        addGuessedWord,
-        reset,
+        addGuessedWord
     };
 
     return (

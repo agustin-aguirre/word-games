@@ -2,6 +2,7 @@ import { useState } from "react";
 import PlayerInput from "./inputs/PlayerInput";
 import PlayedLetters from "./letters/PlayedLetters";
 import PlayedWords from "./words/PlayedWords";
+import Stopwatch from "./timers/Stopwatch";
 import { useRoundConfig } from "../contexts/RoundConfigContext";
 import { usePlayerRound } from "../contexts/PlayerRoundContext";
 
@@ -26,6 +27,7 @@ function Game() {
 
     return (
         <div className="game-loop-container">
+            <Stopwatch />
             <PlayerInput
             onChange={onPlayerInput}
             onSubmit={onPlayerSubmitWord}
