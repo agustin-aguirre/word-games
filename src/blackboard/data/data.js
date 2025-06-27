@@ -2,8 +2,8 @@ export const rounds = {
     1: {
         letters: ["A", "E", "L", "M", "O", "S"],
         words: {
-            3: ["AMO", "ESA", "ESO", "LOA", "MAS", "MAL", "MES", "OLA", "OLE", "OSA", "SAL", "SOL"],
-            4: ["ALOS", "LEMA", "LOMA", "LOSA", "MESA", "MALO", "MOLE", "SOLA"],
+            3: ["AMO", "ESA", "ESO", "LOA", "MAL", "MAS", "MES", "OLA", "OLE", "OSA", "SAL", "SOL"],
+            4: ["ALOS", "LEMA", "LOMA", "LOSA", "MALO", "MESA", "MOLE", "SOLA"],
             5: ["SALMO"],
             6: ["MELOSA"]
         }
