@@ -1,0 +1,23 @@
+.player-input-container {
+    background-color: burlywood;
+}
+
+.word-input-field {
+    padding: 12px 17px;
+    text-align: center;
+    letter-spacing: 10px;
+    font-size: 30px;
+}
+
+.word-input-submit {
+
+}
+
+
+
+.player-input-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}

@@ -1,9 +1,16 @@
+import "./played-letters.css";
+
+
 function PlayedLetters({played, all}) {
     return <>
-        <div>
+        <div className="played-letters-container">
             <ul>
-                {all.filter(letter => !played.includes(letter)).map(letter => {
-                    return <li>{letter}</li>
+                {all.map(letter => {
+                    const alreadyPlayed = played.includes(letter);
+                    const style = {
+                        color: alreadyPlayed ? "transparent" : "inherit"
+                    }
+                    return <li style={{...style}}>{letter}</li>
                 })}
             </ul>
         </div>

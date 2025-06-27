@@ -1,0 +1,21 @@
+.all-played-words-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: seashell;
+}
+
+.played-words-group {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.played-words-group ul {
+    margin: 0;
+    padding: 0;
+}
+
+.played-words-group li {
+    list-style: none;
+}

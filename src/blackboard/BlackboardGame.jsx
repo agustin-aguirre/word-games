@@ -2,7 +2,6 @@ import "./blackboard-game.css";
 import PlayerInput from "./components/PlayerInput"
 import PlayedLetters from "./components/PlayedLetters";
 import PlayedWords from "./components/PlayedWords"
-import Stopwatch from "./components/Stopwatch";
 
 import {rounds} from "./data/data";
 import { useState } from "react";

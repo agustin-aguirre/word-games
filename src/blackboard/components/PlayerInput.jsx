@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "./player-input.css";
 
 function PlayerInput({allowed, onChange, onSubmit}) {
 
@@ -46,10 +46,10 @@ function PlayerInput({allowed, onChange, onSubmit}) {
     }
 
     return (
-        <div>
+        <div className="player-input-container">
             <form onSubmit={handleOnSubmit}>
-                <input type="text" value={formData.word} onChange={handleOnChange} />
-                <input type="submit" />
+                <input className="word-input-field" type="text" value={formData.word} onChange={handleOnChange} />
+                <input className="word-input-submit" type="submit" />
             </form>
         </div>
     );

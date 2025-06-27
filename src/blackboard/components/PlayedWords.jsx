@@ -1,3 +1,6 @@
+import "./played-words.css";
+
+
 function PlayedWords({played, all}) {
 
     const PlayedWordDisplay = ({word, isPlayed}) => {
@@ -17,11 +20,11 @@ function PlayedWords({played, all}) {
     }
 
     return (
-        <div>
+        <div className="all-played-words-container">
             {
                 Object.keys(all).map(length => {
                     return (
-                        <div>
+                        <div className="played-words-group">
                             <PlayedWordsGroup
                             played={played[length]}
                             all={all[length]}
