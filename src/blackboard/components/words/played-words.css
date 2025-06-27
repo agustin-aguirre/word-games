@@ -5,6 +5,7 @@
     background-color: seashell;
     font-family: 'Courier New', Courier, monospace;
     letter-spacing: 3px;
+    min-height: 15lh;
 }
 
 .played-words-group {
