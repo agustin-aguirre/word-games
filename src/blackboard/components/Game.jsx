@@ -3,20 +3,15 @@ import PlayerInput from "./inputs/PlayerInput";
 import PlayedLetters from "./letters/PlayedLetters";
 import PlayedWords from "./words/PlayedWords";
 import { useRoundConfig } from "../contexts/RoundConfigContext";
+import { usePlayerRound } from "../contexts/PlayerRoundContext";
 
 
 function Game() {
     
+    const playerRound = usePlayerRound();
     const allowedWords = useRoundConfig().words;
 
-    const [plays, setPlays] = useState({ 
-        3: [],
-        4: [],
-        5: [],
-        6: [],
-    });
-    
-    const [playedLetters, setPlayedLetters] = useState([])
+    const [playedLetters, setPlayedLetters] = useState([]);
 
 
     function onPlayerInput({word}) {
@@ -26,17 +21,7 @@ function Game() {
     function onPlayerSubmitWord({word}) {
         const length = word.length;
         const isValidWord = allowedWords[length].includes(word);
-        if (isValidWord) {
-            const wordAlreadyPlayed = plays[length].includes(word);
-            if (!wordAlreadyPlayed) {
-                setPlays(prev => {
-                    return {
-                        ...prev,
-                        [length]: [...prev[length], word]
-                    }
-                });
-            }
-        }
+        isValidWord && playerRound.addGuessedWord(word);
     }
 
     return (
@@ -46,7 +31,10 @@ function Game() {
             onSubmit={onPlayerSubmitWord}
             />
             <PlayedLetters played={playedLetters}/>
-            <PlayedWords played={plays} />
+            <PlayedWords/>
+            <div>
+                <p>{playerRound.total}/{useRoundConfig().total}</p>
+            </div>
         </div>
     );
 }

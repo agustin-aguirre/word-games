@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { RoundConfigProvider } from "./contexts/RoundConfigContext";
+import { PlayerRoundProvider } from "./contexts/PlayerRoundContext";
 import Game from "./components/Game";
 import "./blackboard-game.css";
 
@@ -19,7 +20,9 @@ function BlackboardGame() {
                 "The Blackboard Game"
             </h1>
             <RoundConfigProvider roundNumber={roundNumber}>
+            <PlayerRoundProvider>
                 <Game/>
+            </PlayerRoundProvider>
             </RoundConfigProvider>
             <div style={{marginTop: "10px"}}>
                 <button onClick={() => moveToNextRound(-1)}>Prev Round</button>
