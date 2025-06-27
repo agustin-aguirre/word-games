@@ -41,7 +41,7 @@ function BlackboardGame() {
 
     function onPlayerSubmitWord({word}) {
         const length = word.length;
-        const isValidWord = round.words[length].includes(word);
+        const isValidWord = round.words.values[length].includes(word);
         if (isValidWord) {
             const wordAlreadyPlayed = plays[length].includes(word);
             if (!wordAlreadyPlayed) {
@@ -69,7 +69,7 @@ function BlackboardGame() {
                 <PlayedLetters played={playedLetters} all={round.letters}/>
                 <PlayedWords 
                 played={plays} 
-                all={round.words}
+                all={round.words.values}
                 />
             </div>
             <div style={{marginTop: "10px"}}>
