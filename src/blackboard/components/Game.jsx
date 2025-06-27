@@ -7,7 +7,7 @@ import { useRoundConfig } from "../contexts/RoundConfigContext";
 
 function Game() {
     
-    const roundConfig = useRoundConfig();
+    const allowedWords = useRoundConfig().words;
 
     const [plays, setPlays] = useState({ 
         3: [],
@@ -25,7 +25,7 @@ function Game() {
 
     function onPlayerSubmitWord({word}) {
         const length = word.length;
-        const isValidWord = roundConfig.words[length].includes(word);
+        const isValidWord = allowedWords[length].includes(word);
         if (isValidWord) {
             const wordAlreadyPlayed = plays[length].includes(word);
             if (!wordAlreadyPlayed) {
