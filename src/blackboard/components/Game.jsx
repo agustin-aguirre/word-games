@@ -1,4 +1,5 @@
 import { useState } from "react";
+import EndGameModal from "./endgame/EndgameModal";
 import PlayerInput from "./inputs/PlayerInput";
 import PlayedLetters from "./letters/PlayedLetters";
 import PlayedWords from "./words/PlayedWords";
@@ -27,6 +28,7 @@ function Game() {
 
     return (
         <div className="game-loop-container">
+            <EndGameModal show={playerRound.isPlaying}/>
             <Stopwatch />
             <PlayerInput
             onChange={onPlayerInput}

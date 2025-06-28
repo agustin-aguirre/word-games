@@ -1,0 +1,7 @@
+.endgame-message {
+    z-index: 1;
+    position: absolute;
+    background-color: green;
+    color: white;
+    padding: 50px 125px
+}
