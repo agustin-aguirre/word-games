@@ -1,6 +1,7 @@
 import './App.css'
 
 import BlackboardGame from "./blackboard/BlackboardGame";
+import Tictactoe from './tictactoe/Tictactoe';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <section>
         <div className="game-container">
           <BlackboardGame />
+          <Tictactoe />
         </div>
       </section>
     </>

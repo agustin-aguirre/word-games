@@ -10,13 +10,15 @@ export const usePlayerRound = () => {
 
 // provider
 export const PlayerRoundProvider = ({ totalRoundTime, children }) => {
-    
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [started, setStarted] = useState(false);
+    const [finished, setFinished] = useState(false);
     const [timeLeft, setTimeLeft] = useState(totalRoundTime ?? 90);
     const [guessedWords, setGuessedWords] = useState({});
     const [total, setTotal] = useState(0);
     
     const intervalRef = useRef(null);
+
+    const isPlaying = () => started && !finished;
     
     useEffect(() => {
         if (isPlaying) {
@@ -54,6 +56,8 @@ export const PlayerRoundProvider = ({ totalRoundTime, children }) => {
 
     
     const values = {
+        started,
+        finished,
         isPlaying,
         start,
         finish,
