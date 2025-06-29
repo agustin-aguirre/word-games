@@ -1,21 +1,26 @@
-import { usePlayerRound } from '../../contexts/PlayerRoundContext';
+import { shallow } from 'zustand/shallow';
+import usePlayerRoundStore from '../../stores/playerRound';
+import useRoundConfigStore from '../../stores/roundConfig';
 
 
 function Stopwatch() {
     
-    const playerRound = usePlayerRound();
-
-    const handlePlay = (value) => {
-        value? playerRound.start() : playerRound.finish();
-    }
+    const totalTime = useRoundConfigStore(state =>  state.totalTime);
+    const { isPlaying, timeElapsed, start, finish } = usePlayerRoundStore(state => ({
+        isPlaying: state.isPlaying,
+        timeElapsed: state.timeElapsed,
+        start: state.startRound,
+        finish: state.finishRound,
+    }, shallow
+    ));
 
     return (
         <div>
-            <p>Tiempo restante: {playerRound.timeLeft}</p>
+            <p>Tiempo restante: {timeElapsed - totalTime}</p>
             {
-                playerRound.isPlaying ?
-                <button onClick={() => handlePlay(false)}>Detener</button> :
-                <button onClick={() => handlePlay(true)}>Iniciar</button>
+                isPlaying
+                    ? <button onClick={start}>Detener</button>
+                    : <button onClick={finish}>Iniciar</button>
             }
         </div>
     );

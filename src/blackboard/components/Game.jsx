@@ -1,29 +1,42 @@
-import { useState } from "react";
-import EndGameModal from "./endgame/EndgameModal";
+import { shallow } from "zustand/shallow";
+import usePlayerInputStore from "../stores/playerInputs";
+import usePlayerRoundStore from "../stores/playerRound";
+import useRoundConfigStore from "../stores/roundConfig";
 import PlayerInput from "./inputs/PlayerInput";
 import PlayedLetters from "./letters/PlayedLetters";
 import PlayedWords from "./words/PlayedWords";
 import Stopwatch from "./timers/Stopwatch";
-import { useRoundConfig } from "../contexts/RoundConfigContext";
-import { usePlayerRound } from "../contexts/PlayerRoundContext";
 
 
 function Game() {
-    
-    const playerRound = usePlayerRound();
-    const allowedWords = useRoundConfig().words;
 
-    const [playedLetters, setPlayedLetters] = useState([]);
-
+    const { playedWordsTotal, addPlayedWord } = usePlayerRoundStore(state => ({
+            playedWordsTotal: state.playedWordsTotal,
+            addPlayedWord: state.addWord,
+        },
+        shallow
+    ));
+    const { totalWords, allowedWords } = useRoundConfigStore(state => ({
+            totalWords: state.totalWords,
+            allowedWords: state.allowedWords,
+        },
+        shallow
+    ));
+    const { enteredChars, setEnteredWord } = usePlayerInputStore(state => ({
+            enteredChars: state.enteredChars,
+            setEnteredWord: state.setEnteredWord,
+        },
+        shallow
+    ));
 
     function onPlayerInput({word}) {
-        setPlayedLetters(word.split(""));
+        setEnteredWord(word);
     }
 
     function onPlayerSubmitWord({word}) {
         const length = word.length;
         const isValidWord = allowedWords[length].includes(word);
-        isValidWord && playerRound.addGuessedWord(word);
+        isValidWord && addPlayedWord(word);
     }
 
     return (
@@ -34,10 +47,10 @@ function Game() {
             onChange={onPlayerInput}
             onSubmit={onPlayerSubmitWord}
             />
-            <PlayedLetters played={playedLetters}/>
+            <PlayedLetters played={enteredChars}/>
             <PlayedWords/>
             <div>
-                <p>{playerRound.total}/{useRoundConfig().total}</p>
+                <p>{playedWordsTotal}/{totalWords}</p>
             </div>
         </div>
     );
