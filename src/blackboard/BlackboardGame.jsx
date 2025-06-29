@@ -2,6 +2,7 @@ import { useState } from "react";
 import { RoundConfigProvider } from "./contexts/RoundConfigContext";
 import { PlayerRoundProvider } from "./contexts/PlayerRoundContext";
 import Game from "./components/Game";
+import EndgameSplash from "./components/splashes/EndgameSplash";
 import "./blackboard-game.css";
 
 
@@ -14,9 +15,12 @@ function BlackboardGame() {
         setRoundNumber(newRoundNumber);
     }
 
+    const showSplash = false;
+
     return (
         <div>
             <h1>"The Blackboard Game"</h1>
+            <EndgameSplash show={showSplash}/>
             <RoundConfigProvider roundNumber={roundNumber}>
             <PlayerRoundProvider key={roundNumber}>
                 <Game />

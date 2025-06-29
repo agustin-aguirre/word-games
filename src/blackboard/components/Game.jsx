@@ -13,8 +13,7 @@ function Game() {
     const allowedWords = useRoundConfig().words;
 
     const [playedLetters, setPlayedLetters] = useState([]);
-
-
+    
     function onPlayerInput({word}) {
         setPlayedLetters(word.split(""));
     }
