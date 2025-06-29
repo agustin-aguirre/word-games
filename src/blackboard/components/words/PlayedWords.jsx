@@ -1,12 +1,12 @@
-import { useRoundConfig } from "../../contexts/RoundConfigContext";
-import { usePlayerRound } from "../../contexts/PlayerRoundContext";
+import usePlayerRoundStore from "../../stores/playerRound";
+import useRoundConfigStore from "../../stores/roundConfig";
 import "./played-words.css";
 
 
 function PlayedWords() {
 
-    const { guessedWords } = usePlayerRound();
-    const allowedWords = useRoundConfig().words;
+    const enteredWords = usePlayerRoundStore(state => state.enteredWords);
+    const allowedWords = useRoundConfigStore(state => state.allowedWords);
 
     const PlayedWordDisplay = ({word, isPlayed}) => {
         return <li>{isPlayed? word : "_".repeat(word.length)}</li>
@@ -31,7 +31,7 @@ function PlayedWords() {
                     return (
                         <div className="played-words-group">
                             <PlayedWordsGroup
-                            played={guessedWords[length] || []}
+                            played={enteredWords[length] || []}
                             all={allowedWords[length]}
                             />
                         </div>

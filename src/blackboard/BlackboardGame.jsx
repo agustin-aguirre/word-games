@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { rounds as allRoundConfigs } from "./data/data";
-import useRoundConfigStore from "./stores/roundConfig";
 import usePlayerRoundStore from "./stores/playerRound";
+import useRoundConfigStore from "./stores/roundConfig";
 import Game from "./components/Game";
 import EndgameSplash from "./components/splashes/EndgameSplash";
 import "./blackboard-game.css";
@@ -10,11 +10,13 @@ import "./blackboard-game.css";
 function BlackboardGame() {
 
     const [roundNumber, setRoundNumber] = useState(1);
+    const storeRoundNumber = usePlayerRoundStore(state => state.setRound);
     const loadConfig = useRoundConfigStore(state => state.load);
     
     useEffect(() => {
-        loadConfig(roundNumber, allRoundConfigs[roundNumber]);
-        usePlayerRoundStore(state => state.setRound)(roundNumber);
+        const roundConfig = allRoundConfigs[roundNumber];
+        loadConfig(roundNumber, roundConfig);
+        storeRoundNumber(roundNumber);
     }, [loadConfig, roundNumber])
 
     function moveToNextRound(direction) {

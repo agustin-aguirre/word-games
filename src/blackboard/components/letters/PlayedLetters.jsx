@@ -1,20 +1,20 @@
-import { useRoundConfig } from "../../contexts/RoundConfigContext";
+import useRoundConfigStore from "../../stores/roundConfig";
 import "./played-letters.css";
 
 
 function PlayedLetters({ played }) {
 
-    const allowedChars = useRoundConfig().letters;
+    const allowedChars = useRoundConfigStore(state => state.allowedChars);
 
     return ( 
         <div className="played-letters-container">
             <ul>
-                {allowedChars.map(letter => {
-                    const alreadyPlayed = played.includes(letter);
+                {allowedChars.map(char => {
+                    const alreadyPlayed = played.includes(char);
                     const style = {
                         color: alreadyPlayed ? "transparent" : "inherit"
                     }
-                    return <li style={{...style}}>{letter}</li>
+                    return <li style={{...style}}>{char}</li>
                 })}
             </ul>
         </div>

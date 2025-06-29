@@ -41,7 +41,6 @@ function Game() {
 
     return (
         <div className="game-loop-container">
-            <EndGameModal show={playerRound.isPlaying}/>
             <Stopwatch />
             <PlayerInput
             onChange={onPlayerInput}
