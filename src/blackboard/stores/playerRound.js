@@ -44,6 +44,16 @@ const usePlayerRoundStore = create((set, get) => ({
 		set({ roundState: currState === "playing" ? "finished" : currState });
 	},
 
+	get isIdle() {
+		return get().roundState === "idle";
+	},
+	get isPlaying() {
+		return get().roundState === "playing";
+	},
+	get isFinished() {
+		return get().roundState === "finished";
+	},
+
 	resetRound: () => set({...get(), ...defaultPlayerRoundState}),
 }));
 
