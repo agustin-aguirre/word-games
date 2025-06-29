@@ -1,19 +1,25 @@
 import { create } from 'zustand';
 
 
-const useRoundConfigStore = create((set) => ({
-	round: 1,
+const defaultValues = {
+	round: 0,
 	allowedChars: [],
 	allowedWords: {},
-	totalAllowedWords: 0,
-	totalRoundTime: 90,
+	totalWords: 0,
+	totalTime: 0,
+}
+
+
+const useRoundConfigStore = create((set) => ({
+	...defaultValues,
 	setRound: (newRoundNumber) => set({ round: newRoundNumber }),
 	setChars: (chars) => set({ allowedChars: chars }),
 	setWords: (allWords) => set({ 
 		allowedWords: allWords, 
-		totalAllowedWords: allWords.keys.map(length => allWords[length]).flatMap(arr => [...arr]).length,
+		totalWords: allWords.keys.map(length => allWords[length]).flatMap(arr => [...arr]).length,
 	}),
-	setTime: (newRoundTime) => set({ totalRoundTime: newRoundTime }),
+	setTime: (newRoundTime) => set({ totalTime: newRoundTime }),
+	load: (number, config) => set({ ...defaultValues, ...config, round: number })
 }));
 
 
