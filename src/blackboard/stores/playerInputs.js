@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 
-const usePlayerInput = create((set, get) => ({
+const usePlayerInputStore = create((set, get) => ({
     enteredWord: "",
     setEnteredWord: (word) => set({ enteredWord: word }),
     get lastChar() {
@@ -13,4 +13,4 @@ const usePlayerInput = create((set, get) => ({
 }));
 
 
-export default usePlayerInput;
+export default usePlayerInputStore;
