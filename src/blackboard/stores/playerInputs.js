@@ -1,10 +1,15 @@
 import { create } from 'zustand';
 
 
-const usePlayerInput = create((set) => ({
-    entered: [],
-    enterChar: (newChar) => set({ entered: [...entered, newChar] }),
-    resetEntered: () => set({ entered : [] }),
+const usePlayerInput = create((set, get) => ({
+    enteredWord: "",
+    setEnteredWord: (word) => set({ enteredWord: word }),
+    get lastChar() {
+        return get().enteredWord.slice(-1);
+    },
+    get enteredChars() {
+        return get().enteredWord.split("");
+    }
 }));
 
 

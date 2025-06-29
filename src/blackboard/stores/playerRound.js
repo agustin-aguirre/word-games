@@ -3,9 +3,9 @@ import { create } from "zustand";
 
 const defaultPlayerRoundState = {
 	round: 1,
-	words: {},
-	total: 0,
-	time: 90,
+	enteredWords: {},
+	totalEnteredWords: 0,
+	timeElapsed: 0,
 	roundState: "idle",
 }
 
@@ -17,23 +17,22 @@ const usePlayerRoundStore = create((set, get) => ({
 	
 	addWord: (newWord) => { 
 		if (get().roundState !== "playing") return;
-		const length = newWord.length
-    	const currentWords = get().words[length] || []
+		const length = newWord.length;
+    	const currentWords = get().enteredWords[length] || [];
 		const updatedWords = currentWords.includes(newWord)
 			? currentWords
-			: [...currentWords, newWord]
+			: [...currentWords, newWord];
 		set({
-			words: {
+			enteredWords: {
 				...get().words,
 				[length]: updatedWords
 			},
-			total: updatedWords.length,
-		})
+			totalEnteredWords: updatedWords.length,
+		});
 	},
 	
-	setTime: (newRoundTime) => set({ time: newRoundTime }),
-	incrementTimer: () => set({ time: get().time + 1 }),
-	decrementTimer: () => set({ time: Math.max(0, get().time - 1) }),
+	setTime: (newRoundTime) => set({ timeElapsed: newRoundTime }),
+	decrementTimer: () => set({ timeElapsed: Math.max(0, get().timeElapsed - 1) }),
 
 	startRound: () =>  {
 		const currState = get().roundState;
