@@ -7,7 +7,7 @@ import "./player-input.css";
 function PlayerInput({onChange, onSubmit}) {
 
     const allowedChars = useRoundConfigStore(state => state.allowedChars);
-    const isPlaying = usePlayerRound(state => state.isPlaying );
+    const roundState = usePlayerRound(state => state.roundState );
     const [formData, setFormData] = useState({ word: "" });
 
 
@@ -54,7 +54,7 @@ function PlayerInput({onChange, onSubmit}) {
         <div className="player-input-container">
             <form onSubmit={handleOnSubmit}>
             {
-                isPlaying &&
+                roundState === "playing" &&
                 <>
                     <input className="word-input-field" type="text" value={formData.word} onChange={handleOnChange} />
                     <input className="word-input-submit" type="submit" />

@@ -23,10 +23,10 @@ const usePlayerRoundStore = create((set, get) => ({
 			: [...currentWords, newWord];
 		set({
 			enteredWords: {
-				...get().words,
+				...get().enteredWords,
 				[length]: updatedWords
 			},
-			totalEnteredWords: updatedWords.length,
+			totalEnteredWords: get().totalEnteredWords + (currentWords < updatedWords ? 1 : 0),
 		});
 	},
 	

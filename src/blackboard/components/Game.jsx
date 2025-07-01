@@ -9,8 +9,8 @@ import Stopwatch from "./timers/Stopwatch";
 
 function Game() {
 
-    const playedWordsTotal = usePlayerRoundStore(state => state.playedWordsTotal);
-    const addPlayedWord = usePlayerRoundStore(state => state.addPlayedWord);
+    const playedWordsTotal = usePlayerRoundStore(state => state.totalEnteredWords);
+    const addWord = usePlayerRoundStore(state => state.addWord);
     const totalWords = useRoundConfigStore(state => state.totalWords);
     const allowedWords = useRoundConfigStore(state => state.allowedWords);
     const setEnteredWord = usePlayerInputStore(state => state.setEnteredWord);
@@ -21,9 +21,8 @@ function Game() {
 
     function onPlayerSubmitWord({word}) {
         const length = word.length;
-        const isValidWord =
-         allowedWords[length].includes(word);
-        isValidWord && addPlayedWord(word);
+        const isValidWord = allowedWords[length].includes(word);
+        isValidWord && addWord(word);
     }
 
     return (
