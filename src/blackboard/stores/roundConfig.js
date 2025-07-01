@@ -1,14 +1,16 @@
 import { create } from 'zustand';
+import { getRoundConfig } from '../services/rounds';
 
+
+const defaultRoundConfig = getRoundConfig(1);
 
 const defaultValues = {
-	round: 0,
-	allowedChars: [],
-	allowedWords: {},
-	totalWords: 0,
-	totalTime: 0,
+	round: 1,
+	allowedChars: defaultRoundConfig.allowedChars,
+	allowedWords: defaultRoundConfig.allowedWords,
+	totalWords: defaultRoundConfig.totalWords,
+	totalTime: 90,
 }
-
 
 const useRoundConfigStore = create((set) => ({
 	...defaultValues,

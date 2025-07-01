@@ -1,4 +1,3 @@
-import { shallow } from "zustand/shallow";
 import usePlayerInputStore from "../stores/playerInputs";
 import usePlayerRoundStore from "../stores/playerRound";
 import useRoundConfigStore from "../stores/roundConfig";
@@ -10,24 +9,11 @@ import Stopwatch from "./timers/Stopwatch";
 
 function Game() {
 
-    const { playedWordsTotal, addPlayedWord } = usePlayerRoundStore(state => ({
-            playedWordsTotal: state.playedWordsTotal,
-            addPlayedWord: state.addWord,
-        },
-        shallow
-    ));
-    const { totalWords, allowedWords } = useRoundConfigStore(state => ({
-            totalWords: state.totalWords,
-            allowedWords: state.allowedWords,
-        },
-        shallow
-    ));
-    const { enteredChars, setEnteredWord } = usePlayerInputStore(state => ({
-            enteredChars: state.enteredChars,
-            setEnteredWord: state.setEnteredWord,
-        },
-        shallow
-    ));
+    const playedWordsTotal = usePlayerRoundStore(state => state.playedWordsTotal);
+    const addPlayedWord = usePlayerRoundStore(state => state.addPlayedWord);
+    const totalWords = useRoundConfigStore(state => state.totalWords);
+    const allowedWords = useRoundConfigStore(state => state.allowedWords);
+    const setEnteredWord = usePlayerInputStore(state => state.setEnteredWord);
 
     function onPlayerInput({word}) {
         setEnteredWord(word);
@@ -35,7 +21,8 @@ function Game() {
 
     function onPlayerSubmitWord({word}) {
         const length = word.length;
-        const isValidWord = allowedWords[length].includes(word);
+        const isValidWord =
+         allowedWords[length].includes(word);
         isValidWord && addPlayedWord(word);
     }
 
@@ -46,7 +33,7 @@ function Game() {
             onChange={onPlayerInput}
             onSubmit={onPlayerSubmitWord}
             />
-            <PlayedLetters played={enteredChars}/>
+            <PlayedLetters/>
             <PlayedWords/>
             <div>
                 <p>{playedWordsTotal}/{totalWords}</p>

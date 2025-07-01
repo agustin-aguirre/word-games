@@ -11,14 +11,7 @@ function BlackboardGame() {
 
     const [roundNumber, setRoundNumber] = useState(1);
     const storeRoundNumber = usePlayerRoundStore(state => state.setRound);
-    const loadConfig = useRoundConfigStore(state => state.load);
     
-    useEffect(() => {
-        const roundConfig = allRoundConfigs[roundNumber];
-        loadConfig(roundNumber, roundConfig);
-        storeRoundNumber(roundNumber);
-    }, [loadConfig, roundNumber])
-
     function moveToNextRound(direction) {
         const newRoundNumber = roundNumber + direction;
         setRoundNumber(newRoundNumber);

@@ -3,13 +3,18 @@ import { create } from 'zustand';
 
 const usePlayerInputStore = create((set, get) => ({
     enteredWord: "",
-    setEnteredWord: (word) => set({ enteredWord: word }),
-    get lastChar() {
-        return get().enteredWord.slice(-1);
+    enteredChars: [],
+    lastChar: "",
+    setEnteredWord: (word) => {
+        const wordSplit = word.split("");
+        set({ 
+            enteredWord: word,
+            enteredChars: wordSplit,
+            lastChar: word.length > 0 
+                ? wordSplit.at(-1) 
+                : "",
+         })
     },
-    get enteredChars() {
-        return get().enteredWord.split("");
-    }
 }));
 
 
