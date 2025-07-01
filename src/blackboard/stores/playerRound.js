@@ -15,8 +15,7 @@ const usePlayerRoundStore = create((set, get) => ({
 	
 	setRound: (newRoundNumber) => set({ round: newRoundNumber }),
 	
-	addWord: (newWord) => { 
-		if (get().roundState !== "playing") return;
+	addWord: (newWord) => {
 		const length = newWord.length;
     	const currentWords = get().enteredWords[length] || [];
 		const updatedWords = currentWords.includes(newWord)
@@ -32,9 +31,10 @@ const usePlayerRoundStore = create((set, get) => ({
 	},
 	
 	setTime: (newRoundTime) => set({ timeElapsed: newRoundTime }),
-	decrementTimer: () => set({ timeElapsed: Math.max(0, get().timeElapsed - 1) }),
+	incrementTimer: (amount) => set({ timeElapsed: get().timeElapsed + (amount ?? 1) }),
+	decrementTimer: (amount) => set({ timeElapsed: Math.max(0, get().timeElapsed - (amount ?? 1)) }),
 
-	startRound: () =>  {
+	startRound: () => {
 		const currState = get().roundState;
 		set({ roundState: currState === "idle" ? "playing" : currState });
 	},
@@ -42,16 +42,6 @@ const usePlayerRoundStore = create((set, get) => ({
 	finishRound: () => {
 		const currState = get().roundState;
 		set({ roundState: currState === "playing" ? "finished" : currState });
-	},
-
-	get isIdle() {
-		return get().roundState === "idle";
-	},
-	get isPlaying() {
-		return get().roundState === "playing";
-	},
-	get isFinished() {
-		return get().roundState === "finished";
 	},
 
 	resetRound: () => set({...get(), ...defaultPlayerRoundState}),

@@ -15,8 +15,9 @@ function PlayedWords() {
     const PlayedWordsGroup = ({played, all}) => {
         return (
             <ul>
-                {all.map(word => 
-                    <PlayedWordDisplay 
+                {all.map((word, index) => 
+                    <PlayedWordDisplay
+                    key={index} 
                     word={word} 
                     isPlayed={played.includes(word)} 
                 />)}
@@ -27,9 +28,9 @@ function PlayedWords() {
     return (
         <div className="all-played-words-container">
             {
-                Object.keys(allowedWords).map(length => {
+                Object.keys(allowedWords).map((length, index) => {
                     return (
-                        <div className="played-words-group">
+                        <div key={index} className="played-words-group">
                             <PlayedWordsGroup
                             played={enteredWords[length] || []}
                             all={allowedWords[length]}

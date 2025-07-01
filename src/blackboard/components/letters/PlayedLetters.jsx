@@ -11,12 +11,12 @@ function PlayedLetters() {
     return ( 
         <div className="played-letters-container">
             <ul>
-                {allowedChars.map(char => {
+                {allowedChars.map((char, index) => {
                     const alreadyPlayed = enteredChars.includes(char);
                     const style = {
                         color: alreadyPlayed ? "transparent" : "inherit"
                     }
-                    return <li style={{...style}}>{char}</li>
+                    return <li key={index} style={{...style}}>{char}</li>
                 })}
             </ul>
         </div>
