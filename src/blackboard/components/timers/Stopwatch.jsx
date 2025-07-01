@@ -18,7 +18,7 @@ function Stopwatch() {
             intervalRef.current = setInterval(() => increment(), 1000);
         }
         return () => clearInterval(intervalRef.current);
-    }, [roundState]);
+    }, [roundState, timeElapsed]);
 
 
     return (
@@ -27,9 +27,7 @@ function Stopwatch() {
             {
                 roundState === "idle"
                     ? <button onClick={start}>Iniciar</button>
-                    : (roundState === "playing")
-                        ? <button onClick={finish}>Detener</button>
-                        : <p>Terminado</p>
+                    : <button onClick={finish}>Detener</button>
             }
         </div>
     );
