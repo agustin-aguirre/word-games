@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import usePlayerRoundStore from '../../stores/playerRound';
 import useRoundConfigStore from '../../stores/roundConfig';
+import "./stopwatch.css";
 
 
 function Stopwatch() {
@@ -22,13 +23,8 @@ function Stopwatch() {
 
 
     return (
-        <div>
-            <p>Tiempo restante: {totalTime - timeElapsed}</p>
-            {
-                roundState === "idle"
-                    ? <button onClick={start}>Iniciar</button>
-                    : <button onClick={finish}>Detener</button>
-            }
+        <div className="stopwatch">
+            <h3>{totalTime - timeElapsed}</h3>
         </div>
     );
 }

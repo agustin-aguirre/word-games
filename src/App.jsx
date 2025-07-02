@@ -1,6 +1,5 @@
-import './App.css'
-
 import BlackboardGame from "./blackboard/BlackboardGame";
+import './App.css'
 
 
 function App() {
@@ -9,10 +8,8 @@ function App() {
       <header>
         Juegos
       </header>
-      <section>
-        <div className="game-container">
-          <BlackboardGame />
-        </div>
+      <section class="game-container">
+        <BlackboardGame />
       </section>
     </>
   )

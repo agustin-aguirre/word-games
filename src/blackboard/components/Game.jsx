@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import usePlayerInputStore from "../stores/playerInputs";
 import usePlayerRoundStore from "../stores/playerRound";
 import useRoundConfigStore from "../stores/roundConfig";
@@ -5,7 +6,7 @@ import PlayerInput from "./inputs/PlayerInput";
 import PlayedLetters from "./letters/PlayedLetters";
 import PlayedWords from "./words/PlayedWords";
 import Stopwatch from "./timers/Stopwatch";
-import { useEffect } from "react";
+import "./game.css";
 
 
 function Game() {
@@ -14,9 +15,11 @@ function Game() {
     const allowedWords = useRoundConfigStore(state => state.allowedWords);
     const totalTime = useRoundConfigStore(state => state.totalTime);
     
+    const roundState = usePlayerRoundStore(state => state.roundState);
     const playedWordsTotal = usePlayerRoundStore(state => state.totalEnteredWords);
     const addWord = usePlayerRoundStore(state => state.addWord);
     const timeElapsed = usePlayerRoundStore(state => state.timeElapsed);
+    const startRound = usePlayerRoundStore(state => state.startRound);
     
     const setEnteredWord = usePlayerInputStore(state => state.setEnteredWord);
     const finishRound = usePlayerRoundStore(state => state.finishRound);
@@ -41,16 +44,27 @@ function Game() {
 
     return (
         <div className="game-loop-container">
-            <Stopwatch />
+            <PlayedWords/>
+            <div className="central-container">
+                <div>
+                    <p>{playedWordsTotal}/{totalWords}</p>
+                </div>
+                <button onClick={() => {
+                    roundState === "idle"
+                        ? startRound()
+                        : () => {}
+                }}>
+                    {roundState === "idle" 
+                        ? "Start"
+                        : "Shuffle"}
+                </button>
+                <Stopwatch />
+            </div>
             <PlayerInput
             onChange={onPlayerInput}
             onSubmit={onPlayerSubmitWord}
             />
             <PlayedLetters/>
-            <PlayedWords/>
-            <div>
-                <p>{playedWordsTotal}/{totalWords}</p>
-            </div>
         </div>
     );
 }

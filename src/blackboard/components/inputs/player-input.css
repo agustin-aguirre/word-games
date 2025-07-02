@@ -5,7 +5,7 @@
 .word-input-field {
     padding: 12px 17px;
     text-align: center;
-    letter-spacing: 10px;
+    letter-spacing: 5px;
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
 }

@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { rounds as allRoundConfigs } from "./data/data";
+import { useState } from "react";
 import usePlayerRoundStore from "./stores/playerRound";
 import useRoundConfigStore from "./stores/roundConfig";
+import { getRoundConfig } from "./services/rounds";
 import Game from "./components/Game";
 import EndgameSplash from "./components/splashes/EndgameSplash";
 import "./blackboard-game.css";
-import { getRoundConfig } from "./services/rounds";
 
 
 function BlackboardGame() {
@@ -25,7 +24,7 @@ function BlackboardGame() {
     }
 
     return (
-        <div>
+        <div className="game-loop-container">
             <h1>"The Blackboard Game"</h1>
             <EndgameSplash show={roundState === "finished"}/>
             <Game />
