@@ -42,6 +42,12 @@ function Game() {
         isValidWord && addWord(word);
     }
 
+    function handleMidButtonClick() {
+        roundState === "idle" 
+            ? startRound()
+            : shuffleLetters();
+    }
+
     return (
         <div className="game-loop-container">
             <PlayedWords/>
@@ -49,14 +55,8 @@ function Game() {
                 <div>
                     <p>{playedWordsTotal}/{totalWords}</p>
                 </div>
-                <button onClick={() => {
-                    roundState === "idle"
-                        ? startRound()
-                        : () => {}
-                }}>
-                    {roundState === "idle" 
-                        ? "Start"
-                        : "Shuffle"}
+                <button onClick={handleMidButtonClick}>
+                    {roundState === "idle" ? "Start" : "Shuffle"}
                 </button>
                 <Stopwatch />
             </div>
