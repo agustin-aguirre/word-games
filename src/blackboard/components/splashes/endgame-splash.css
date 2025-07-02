@@ -1,0 +1,10 @@
+.endgame-splash {
+    z-index: 1;
+    position: absolute;
+    min-height: 50px;
+    padding: 50px 125px;
+    background-color: green;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
