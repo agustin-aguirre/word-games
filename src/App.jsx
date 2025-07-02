@@ -8,7 +8,7 @@ function App() {
       <header>
         Juegos
       </header>
-      <section class="game-container">
+      <section className="game-container">
         <BlackboardGame />
       </section>
     </>

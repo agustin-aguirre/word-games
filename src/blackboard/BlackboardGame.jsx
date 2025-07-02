@@ -25,7 +25,7 @@ function BlackboardGame() {
 
     return (
         <div className="game-loop-container">
-            <h1>"The Blackboard Game"</h1>
+            <h1 className="text-2xl font-bold">"The Blackboard Game"</h1>
             <EndgameSplash show={roundState === "finished"}/>
             <Game />
             {
