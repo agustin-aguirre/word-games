@@ -4,7 +4,6 @@ import useRoundConfigStore from "./stores/roundConfig";
 import { getRoundConfig } from "./services/rounds";
 import Game from "./components/Game";
 import EndgameSplash from "./components/splashes/EndgameSplash";
-import "./blackboard-game.css";
 
 
 function BlackboardGame() {
@@ -24,8 +23,8 @@ function BlackboardGame() {
     }
 
     return (
-        <div className="game-loop-container">
-            <h1 className="text-2xl font-bold">"The Blackboard Game"</h1>
+        <div className="m-0 p-0 self-center min-w-xs max-w-3xl rounded-2xl">
+            <h1 className="text-2xl font-bold text-center cantata-one-regular">El Juego del Pizarrón</h1>
             <EndgameSplash show={roundState === "finished"}/>
             <Game />
             {

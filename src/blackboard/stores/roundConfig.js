@@ -9,7 +9,7 @@ const defaultValues = {
 	allowedChars: defaultRoundConfig.allowedChars,
 	allowedWords: defaultRoundConfig.allowedWords,
 	totalWords: defaultRoundConfig.totalWords,
-	totalTime: 1,
+	totalTime: 90,
 }
 
 const useRoundConfigStore = create((set) => ({

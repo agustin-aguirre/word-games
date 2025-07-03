@@ -12,9 +12,9 @@ function EndgameSplash({show}) {
             animate={{scale: 1, opacity:1}}
             >
                 <div className="w-full flex justify-center items-center pb-5">
-                    <p className="flex">
+                    <h2 className="flex cantata-one-regular">
                         FINISHED
-                    </p>
+                    </h2>
                 </div>
                 <div className="bg-amber-50 p-7 block">
 

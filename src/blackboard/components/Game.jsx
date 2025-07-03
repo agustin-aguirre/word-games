@@ -2,11 +2,9 @@ import { useEffect } from "react";
 import usePlayerInputStore from "../stores/playerInputs";
 import usePlayerRoundStore from "../stores/playerRound";
 import useRoundConfigStore from "../stores/roundConfig";
-import PlayerInput from "./inputs/PlayerInput";
-import PlayedLetters from "./letters/PlayedLetters";
-import PlayedWords from "./words/PlayedWords";
-import Stopwatch from "./timers/Stopwatch";
-import "./game.css";
+import PlayerInputPanel from "./panels/PlayerInputPanel";
+import PlayedWords from "./panels/PlayedWords";
+import CentralPanel from "./panels/CentralPanel";
 
 
 function Game() {
@@ -49,22 +47,18 @@ function Game() {
     }
 
     return (
-        <div className="game-loop-container">
+        <div className="flex flex-col gap-y-3 mt-2">
             <PlayedWords/>
-            <div className="central-container">
-                <div>
-                    <p>{playedWordsTotal}/{totalWords}</p>
-                </div>
-                <button onClick={handleMidButtonClick}>
-                    {roundState === "idle" ? "Start" : "Shuffle"}
-                </button>
-                <Stopwatch />
-            </div>
-            <PlayerInput
+            <CentralPanel 
+            playedWordsTotal={playedWordsTotal}
+            totalWords={totalWords}
+            roundState={roundState}
+            handleMidButtonClick={handleMidButtonClick}
+            />
+            <PlayerInputPanel 
             onChange={onPlayerInput}
             onSubmit={onPlayerSubmitWord}
             />
-            <PlayedLetters/>
         </div>
     );
 }

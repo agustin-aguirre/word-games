@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { motion } from "motion/react";
 import useRoundConfigStore from "../../stores/roundConfig";
 import usePlayerRound from "../../stores/playerRound";
-import "./player-input.css";
 
 
 function PlayerInput({onChange, onSubmit}) {
@@ -51,14 +51,28 @@ function PlayerInput({onChange, onSubmit}) {
     }
 
     return (
-        <div className="player-input-container">
+        <div>
+            {}
             <form onSubmit={handleOnSubmit}>
             {
                 roundState === "playing" &&
-                <>
-                    <input className="word-input-field" type="text" value={formData.word} onChange={handleOnChange} />
-                    <input className="word-input-submit" type="submit" />
-                </>
+                <motion.div >
+                    <input className={`
+                    w-full 
+                    py-4 text-center
+                    tracking-widest
+                    shadow-xl/20
+                    shadow-2xl
+                    rounded-2xl
+                    text-2xl
+                    `}
+                    inputProps={{readOnly:true}}
+                    type="text" 
+                    value={formData.word} 
+                    onChange={handleOnChange} 
+                    />
+                    <input className="word-input-submit" type="submit" hidden />
+                </motion.div>
             }
             </form>
         </div>

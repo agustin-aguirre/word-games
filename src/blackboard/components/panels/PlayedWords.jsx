@@ -26,7 +26,13 @@ function PlayedWords() {
     }
 
     return (
-        <div className="all-played-words-container">
+        <div className={
+            `flex justify-between pt-2 px-5 pb-5 
+            rounded-2xl shadow-2xl
+            tracking-widest bg-emerald-800
+            text-white
+            cabin-sketch-regular
+            `}>
             {
                 Object.keys(allowedWords).map((length, index) => {
                     return (
