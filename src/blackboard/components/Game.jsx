@@ -56,8 +56,8 @@ function Game() {
             handleMidButtonClick={handleMidButtonClick}
             />
             <PlayerInputPanel 
-            onChange={onPlayerInput}
-            onSubmit={onPlayerSubmitWord}
+            onPlayerInput={onPlayerInput}
+            onPlayerSubmitWord={onPlayerSubmitWord}
             />
         </div>
     );
