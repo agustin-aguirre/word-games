@@ -6,13 +6,27 @@ import usePlayerRoundStore from "../../stores/playerRound";
 import CharButton from "../buttons/CharButton";
 
 
+
 function PlayerInputPanel({onPlayerSubmitWord}) {
 
     const roundChars = useRoundConfigStore(state => state.allowedChars);
     const [enteredWord, setEnteredWord] = useState("")
     const [remainingChars, setRemainingChars] = useState([...roundChars]);
     const [pressedLetterButtons, setPressedLetterButtons] = useState([]);
-    
+    const [buttonIds] = useState(roundChars.map((char, i) => `${i}-${char}`));
+    const [buttonElems, setButtonElems] = useState(buttonIds.map((id) => renderLetterButton(id)));
+
+    function renderLetterButton(id, isHidden) {
+        return (
+            <CharButton key={id}
+            id={id}
+            char={id.split("-")[1]}
+            isHidden={isHidden ?? pressedLetterButtons.includes(id)}
+            onClick={onLetterClicked}
+            />
+        );
+    }
+
     function forceUpdateFormValues(updatedEnteredWord, updatedRemainingChars) {
         setEnteredWord(updatedEnteredWord);
         setRemainingChars(updatedRemainingChars);
@@ -42,7 +56,13 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
     }
 
     function onLetterClicked(id, letter) {
+        const index = buttonIds.findIndex(elem => elem === id);
         updateInput(letter);
+        setButtonElems(prev => {
+            const updated = [...prev];
+            updated[index] = renderLetterButton(id, true);
+            return updated;
+        });
         setPressedLetterButtons(prev => prev.concat(id));
     }
 
@@ -65,7 +85,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
 
     function handleOnSubmit(event) {
         event.preventDefault();
-        onSubmit(enteredWord);
+        onPlayerSubmitWord(enteredWord);
         resetFormValues();
     }
 
@@ -95,17 +115,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
                 </form>
             </div>
             <div className={`flex justify-between px-8 py-4`}>
-                {roundChars.map((char, index) => {
-                    const key = `${index}-${char}`;
-                    return (
-                        <CharButton key={key}
-                        id={key}
-                        char={char}
-                        isHidden={pressedLetterButtons.includes(key)}
-                        onClick={onLetterClicked}
-                        />
-                    );
-                })}
+                {buttonElems}
             </div>
         </div>
     );
