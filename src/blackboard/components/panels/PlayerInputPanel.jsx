@@ -7,6 +7,7 @@ import InputPanelCharButton from "../buttons/InputPanelCharButton";
 function PlayerInputPanel({onPlayerSubmitWord}) {
 
     const roundChars = useRoundConfigStore(state => state.allowedChars);
+    const charsOrder = useRoundConfigStore(state => state.charsOrder);
     const inputs = usePlayerInputStore(state => state.inputs);
     const inputChars = usePlayerInputStore(state => state.chars);
     const inputWord = usePlayerInputStore(state => state.word);
@@ -14,7 +15,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
     const pushInput = usePlayerInputStore(state => state.pushInput);
     const popInput = usePlayerInputStore(state => state.popInput);
     
-    const registeredInputs = roundChars.map((char, index) => {
+    const possibleInputs = roundChars.map((char, index) => {
         const id = `${index}-${char}`;
         return {
             id: id,
@@ -22,7 +23,6 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
             button: <InputPanelCharButton key={id} id={id} value={char} onClick={onButtonClick} />,
         }
     });
-    
 
     function onButtonClick(id, value) {
         if (inputs.find(input => input.id === id)) return;
@@ -41,7 +41,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
         const newCharAllowedCount = roundChars.reduce(accFunc, 0);
         const newCharCurrentCount = inputChars.reduce(accFunc, 0);
         if (newCharCurrentCount >= newCharAllowedCount) return;
-        const targetInput = registeredInputs
+        const targetInput = possibleInputs
             .filter(input => input.value === newChar)
             .slice(newCharCurrentCount)[0];
         pushInput(targetInput.id, targetInput.value);
@@ -80,7 +80,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
                 </form>
             </div>
             <div>
-                {registeredInputs.map(input => input.button)}
+                { charsOrder.map(index => possibleInputs[index].button) }
             </div>
         </div>
     );

@@ -12,6 +12,7 @@ function Game() {
     const totalWords = useRoundConfigStore(state => state.totalWords);
     const allowedWords = useRoundConfigStore(state => state.allowedWords);
     const totalTime = useRoundConfigStore(state => state.totalTime);
+    const shuffleChars = useRoundConfigStore(state => state.shuffleChars);
     
     const roundState = usePlayerRoundStore(state => state.roundState);
     const playedWordsTotal = usePlayerRoundStore(state => state.totalEnteredWords);
@@ -43,7 +44,7 @@ function Game() {
     function handleMidButtonClick() {
         roundState === "idle" 
             ? startRound()
-            : shuffleLetters();
+            : shuffleChars();
     }
 
     return (
