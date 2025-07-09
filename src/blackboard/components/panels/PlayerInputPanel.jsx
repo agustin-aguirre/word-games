@@ -50,6 +50,16 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
 
     function handleOnSubmit(event) {
         event.preventDefault();
+        submitEnteredWord();
+    }
+
+    function deleteLastInput() {
+        if (inputWord.length > 0) {
+            popInput();
+        }
+    }
+
+    function submitEnteredWord() {
         const word = inputWord;
         flushInputs();
         onPlayerSubmitWord(word);
@@ -69,7 +79,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
                                 shadow-xl/20 shadow-2xl text-3xl rounded-2xl 
                                 grid grid-cols-6`}>
                             
-                            <InputActionButton name="Borrar" symbolName="backspace"/>
+                            <InputActionButton name="Borrar" symbolName="backspace" onClick={deleteLastInput}/>
                             
                             <div className="py-4 col-span-4">
                                 <input type="text" value={inputWord} autoFocus
@@ -78,7 +88,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
                                 />
                             </div>
 
-                            <InputActionButton name="Ingresar" symbolName="arrow_forward"/>
+                            <InputActionButton name="Ingresar" symbolName="arrow_forward" onClick={submitEnteredWord}/>
                         </div>
                         <input type="submit" hidden />
                     </form>

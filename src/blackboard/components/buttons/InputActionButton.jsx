@@ -8,7 +8,7 @@ export default function InputActionButton({name, symbolName, onClick}) {
         type="button" 
         onClick={onClick} 
         >
-            <span className="material-symbols-outlined text-[calc(100vh/4)] leading-none">
+            <span className="material-symbols-outlined">
                 {symbolName}
             </span>
         </button>
