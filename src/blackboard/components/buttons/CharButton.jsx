@@ -1,16 +1,17 @@
+const getVisibilityStyles = (isVisible) => isVisible ? 'hover:text-amber-300 cursor-pointer' : 'opacity-0';
+
 function CharButton({id, value, isVisible, onClick}) {
     return (
-        <div className={!isVisible? "opacity-0" : ""}>
-            
-            <button 
-            { ...{ onClick: () => isVisible && onClick(id, value)} }
-            className={`
-                rounded-2xl aspect-square text-2xl
-                ${isVisible ? 'hover:text-amber-300 cursor-pointer' : ''}
-            `}>
+        <button 
+        onClick={() => isVisible && onClick(id, value)}
+        className={`
+            aspect-square min-h-15
+            ${getVisibilityStyles(isVisible)}
+        `}>
+            <span className="h-full w-full text-3xl">
                 {value}
-            </button>
-        </div>
+            </span>
+        </button>
     )
 }
 

@@ -10,6 +10,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
     const inputs = usePlayerInputStore(state => state.inputs);
     const inputChars = usePlayerInputStore(state => state.chars);
     const inputWord = usePlayerInputStore(state => state.word);
+    const flushInputs = usePlayerInputStore(state => state.flushInputs);
     const pushInput = usePlayerInputStore(state => state.pushInput);
     const popInput = usePlayerInputStore(state => state.popInput);
     
@@ -48,9 +49,12 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
 
     function handleOnSubmit(event) {
         event.preventDefault();
+        const word = inputWord;
+        flushInputs();
+        onPlayerSubmitWord(word);
     }
 
-    
+
     return (
         <div className={`
             rounded-2xl shadow-2xl cabin-sketch-bold 
@@ -63,7 +67,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
                     <motion.div>
                         <input className={`
                         w-full py-4 text-center tracking-widest
-                        shadow-xl/20 shadow-2xl text-2xl rounded-2xl
+                        shadow-xl/20 shadow-2xl text-3xl rounded-2xl
                         `}
                         type="text" 
                         value={inputWord} 
@@ -75,7 +79,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
                 }
                 </form>
             </div>
-            <div className={`flex justify-between px-8 py-4`}>
+            <div>
                 {registeredInputs.map(input => input.button)}
             </div>
         </div>

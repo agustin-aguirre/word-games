@@ -6,6 +6,12 @@ const usePlayerInputStore = create((set, get) => ({
     word: "",
     chars: [],
     
+    flushInputs: () => set(() => ({
+        inputs: [],
+        word: "",
+        chars: [],
+    })),
+
     pushInput: (id, value) => set(() => {
         const newInputs = get().inputs.concat({ id: id, value: value });
         const newChars = newInputs.map(input => input.value);
