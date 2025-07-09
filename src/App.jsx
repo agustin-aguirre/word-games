@@ -1,20 +1,17 @@
-import './App.css'
-
 import BlackboardGame from "./blackboard/BlackboardGame";
+import './App.css'
 
 
 function App() {
   return (
-    <>
+    <div>
       <header>
         Juegos
       </header>
-      <section>
-        <div className="game-container">
-          <BlackboardGame />
-        </div>
+      <section className="game-container">
+        <BlackboardGame />
       </section>
-    </>
+    </div>
   )
 }
 

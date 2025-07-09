@@ -1,11 +1,10 @@
+import { useEffect } from "react";
 import usePlayerInputStore from "../stores/playerInputs";
 import usePlayerRoundStore from "../stores/playerRound";
 import useRoundConfigStore from "../stores/roundConfig";
-import PlayerInput from "./inputs/PlayerInput";
-import PlayedLetters from "./letters/PlayedLetters";
-import PlayedWords from "./words/PlayedWords";
-import Stopwatch from "./timers/Stopwatch";
-import { useEffect } from "react";
+import PlayerInputPanel from "./panels/PlayerInputPanel";
+import PlayedWords from "./panels/PlayedWords";
+import CentralPanel from "./panels/CentralPanel";
 
 
 function Game() {
@@ -13,10 +12,13 @@ function Game() {
     const totalWords = useRoundConfigStore(state => state.totalWords);
     const allowedWords = useRoundConfigStore(state => state.allowedWords);
     const totalTime = useRoundConfigStore(state => state.totalTime);
+    const shuffleChars = useRoundConfigStore(state => state.shuffleChars);
     
+    const roundState = usePlayerRoundStore(state => state.roundState);
     const playedWordsTotal = usePlayerRoundStore(state => state.totalEnteredWords);
     const addWord = usePlayerRoundStore(state => state.addWord);
     const timeElapsed = usePlayerRoundStore(state => state.timeElapsed);
+    const startRound = usePlayerRoundStore(state => state.startRound);
     
     const setEnteredWord = usePlayerInputStore(state => state.setEnteredWord);
     const finishRound = usePlayerRoundStore(state => state.finishRound);
@@ -33,24 +35,31 @@ function Game() {
         setEnteredWord(word);
     }
 
-    function onPlayerSubmitWord({word}) {
+    function onPlayerSubmitWord(word) {
         const length = word.length;
         const isValidWord = allowedWords[length].includes(word);
         isValidWord && addWord(word);
     }
 
+    function handleMidButtonClick() {
+        roundState === "idle" 
+            ? startRound()
+            : shuffleChars();
+    }
+
     return (
-        <div className="game-loop-container">
-            <Stopwatch />
-            <PlayerInput
-            onChange={onPlayerInput}
-            onSubmit={onPlayerSubmitWord}
-            />
-            <PlayedLetters/>
+        <div className="flex flex-col gap-y-3 mt-2">
             <PlayedWords/>
-            <div>
-                <p>{playedWordsTotal}/{totalWords}</p>
-            </div>
+            <CentralPanel 
+            playedWordsTotal={playedWordsTotal}
+            totalWords={totalWords}
+            roundState={roundState}
+            handleMidButtonClick={handleMidButtonClick}
+            />
+            <PlayerInputPanel 
+            onPlayerInput={onPlayerInput}
+            onPlayerSubmitWord={onPlayerSubmitWord}
+            />
         </div>
     );
 }
