@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import useRoundConfigStore from "../../stores/roundConfig";
 import usePlayerInputStore from "../../stores/playerInputs";
 import InputPanelCharButton from "../buttons/InputPanelCharButton";
+import InputActionButton from "../buttons/InputActionButton";
 
 
 function PlayerInputPanel({onPlayerSubmitWord}) {
@@ -56,33 +57,37 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
 
 
     return (
-        <div className={`
-            rounded-2xl shadow-2xl cabin-sketch-bold 
-            bg-emerald-800 text-white
-            `}>
-            <div>
-                <form onSubmit={handleOnSubmit}>
-                {
-                    //roundState === "playing" &&
-                    <motion.div>
-                        <input className={`
-                        w-full py-4 text-center tracking-widest
-                        shadow-xl/20 shadow-2xl text-3xl rounded-2xl
-                        `}
-                        type="text" 
-                        value={inputWord} 
-                        onChange={e => handleKeyboardInductedChange(e.target.value.toUpperCase())} 
-                        autoFocus
-                        />
+        <motion.div>
+            <div className={`
+                rounded-2xl shadow-2xl cabin-sketch-bold 
+                bg-emerald-800 text-white
+                grid grid-rows-2
+                `}>
+                <div>
+                    <form onSubmit={handleOnSubmit}>
+                        <div className={`w-full text-center tracking-widest
+                                shadow-xl/20 shadow-2xl text-3xl rounded-2xl 
+                                grid grid-cols-6`}>
+                            
+                            <InputActionButton name="Borrar" symbolName="backspace"/>
+                            
+                            <div className="py-4 col-span-4">
+                                <input type="text" value={inputWord} autoFocus
+                                className="w-full text-center text-4xl" 
+                                onChange={e => handleKeyboardInductedChange(e.target.value.toUpperCase())} 
+                                />
+                            </div>
+
+                            <InputActionButton name="Ingresar" symbolName="arrow_forward"/>
+                        </div>
                         <input type="submit" hidden />
-                    </motion.div>
-                }
-                </form>
+                    </form>
+                </div>
+                <div className={`grid grid-cols-${roundChars.length}`}>
+                    { charsOrder.map(index => possibleInputs[index].button) }
+                </div>
             </div>
-            <div>
-                { charsOrder.map(index => possibleInputs[index].button) }
-            </div>
-        </div>
+        </motion.div>
     );
 }
 
