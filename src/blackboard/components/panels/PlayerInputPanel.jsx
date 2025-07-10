@@ -3,6 +3,7 @@ import useRoundConfigStore from "../../stores/roundConfig";
 import usePlayerInputStore from "../../stores/playerInputs";
 import InputPanelCharButton from "../buttons/InputPanelCharButton";
 import InputActionButton from "../buttons/InputActionButton";
+import ChalkboardPanel from "./ChalkboardPanel";
 
 
 function PlayerInputPanel({onPlayerSubmitWord}) {
@@ -67,12 +68,8 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
 
 
     return (
-        <motion.div>
-            <div className={`
-                rounded-2xl shadow-2xl cabin-sketch-bold 
-                bg-emerald-800 text-white
-                grid grid-rows-2
-                `}>
+        <ChalkboardPanel opacity={30}>
+            <div className={`grid grid-rows-2`}>
                 <div>
                     <form onSubmit={handleOnSubmit}>
                         <div className={`w-full text-center tracking-widest
@@ -97,7 +94,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
                     { charsOrder.map(index => possibleInputs[index].button) }
                 </div>
             </div>
-        </motion.div>
+        </ChalkboardPanel>
     );
 }
 

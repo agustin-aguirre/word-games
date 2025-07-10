@@ -24,7 +24,7 @@ function BlackboardGame() {
 
     return (
         <div className="m-0 p-0 self-center min-w-2/5 max-w-5/6 rounded-2xl">
-            <h1 className="mb-6 text-3xl font-bold text-center cantata-one-regular">El Juego del Pizarrón</h1>
+            <h1 className="mb-6 text-2xl text-xl-4xl font-bold text-center cantata-one-regular">El Juego del Pizarrón</h1>
             <EndgameSplash show={roundState === "finished"}/>
             <Game />
             {
