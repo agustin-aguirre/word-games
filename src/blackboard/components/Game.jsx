@@ -37,6 +37,7 @@ function Game() {
 
     function onPlayerSubmitWord(word) {
         const length = word.length;
+        if (length === 0) return;
         const isValidWord = allowedWords[length].includes(word);
         isValidWord && addWord(word);
     }
