@@ -16,16 +16,19 @@ function PlayedWords() {
         )
     }
 
-
-
     return (
-        <ChalkboardPanel>
-            <div className="pt-3 px-4 pb-3 flex justify-between tracking-widest text-xl-2xl">
+        <ChalkboardPanel className="rounded-2xl shadow-2xl">
+            <div 
+            className="grid gap-3 pr-4 pt-6 pb-8 tracking-widest text-xl-2xl"
+            style={{ gridTemplateColumns: "repeat(4, 1fr)" }}
+            >
                 {
                     Object.keys(allowedWords).map((length) => (
-                        <ul key={`PlayedWords-Group-${length}`}>
-                            {renderWordList(allowedWords[length])}
-                        </ul>
+                        <div className="col-span-1 text-center" >
+                            <ol key={`PlayedWords-Group-${length}`}>
+                                {renderWordList(allowedWords[length])}
+                            </ol>
+                        </div>
                     ))
                 }
             </div>

@@ -68,7 +68,7 @@ function PlayerInputPanel({onPlayerSubmitWord}) {
 
 
     return (
-        <ChalkboardPanel opacity={30}>
+        <ChalkboardPanel opacity={30} className="rounded-2xl shadow-2xl">
             <div className={`grid grid-rows-2`}>
                 <div>
                     <form onSubmit={handleOnSubmit}>
