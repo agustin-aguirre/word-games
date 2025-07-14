@@ -25,7 +25,7 @@ function PlayedWords() {
                 {
                     Object.keys(allowedWords).map((length) => (
                         <div className="col-span-1 text-center" >
-                            <ol key={`PlayedWords-Group-${length}`}>
+                            <ol key={`PlayedWords-Group-${length}`} className="grid gap-1.5" >
                                 {renderWordList(allowedWords[length])}
                             </ol>
                         </div>
