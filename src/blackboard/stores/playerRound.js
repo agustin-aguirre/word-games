@@ -18,6 +18,7 @@ const usePlayerRoundStore = create((set, get) => ({
 	addWord: (newWord) => {
 		const length = newWord.length;
     	const currentWords = get().enteredWords[length] || [];
+		if (currentWords.includes(newWord)) return false;
 		const updatedWords = currentWords.includes(newWord)
 			? currentWords
 			: [...currentWords, newWord];
@@ -28,6 +29,7 @@ const usePlayerRoundStore = create((set, get) => ({
 			},
 			totalEnteredWords: get().totalEnteredWords + (currentWords < updatedWords ? 1 : 0),
 		});
+		return true;
 	},
 	
 	setTime: (newRoundTime) => set({ timeElapsed: newRoundTime }),

@@ -6,6 +6,12 @@ import PlayerInputPanel from "./panels/PlayerInputPanel";
 import PlayedWords from "./panels/PlayedWords";
 import CentralPanel from "./panels/CentralPanel";
 
+const timeAdditions = {
+    3: 2,
+    4: 4,
+    5: 6,
+    6: 8
+}
 
 function Game() {
 
@@ -18,6 +24,7 @@ function Game() {
     const playedWordsTotal = usePlayerRoundStore(state => state.totalEnteredWords);
     const addWord = usePlayerRoundStore(state => state.addWord);
     const timeElapsed = usePlayerRoundStore(state => state.timeElapsed);
+    const setTime = usePlayerRoundStore(state => state.setTime);
     const startRound = usePlayerRoundStore(state => state.startRound);
     
     const setEnteredWord = usePlayerInputStore(state => state.setEnteredWord);
@@ -39,7 +46,9 @@ function Game() {
         const length = word.length;
         if (length === 0) return;
         const isValidWord = allowedWords[length].includes(word);
-        isValidWord && addWord(word);
+        if (isValidWord && addWord(word)) {
+            setTime(timeElapsed - timeAdditions[length]);
+        }
     }
 
     function handleMidButtonClick() {
