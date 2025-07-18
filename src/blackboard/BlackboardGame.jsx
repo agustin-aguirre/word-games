@@ -24,24 +24,30 @@ function BlackboardGame() {
     }
 
     return (
-        <div className="m-0 p-0 self-center min-w-2/5 max-w-111/12 rounded-2xl">
-            <GameTitle value={"El Juego del Pizarrón"}/>
-            <EndgameSplash show={roundState === "finished"}/>
-            <Game />
-            {
-                roundState !== "playing" &&
-                    <div style={{marginTop: "10px"}}>
-                        {
-                            roundNumber - 1 > 0 && 
-                                <button onClick={() => moveToNextRound(-1)}>Prev Round</button>
-                        }
-                        {
-                            roundNumber + 1 < 6 &&
-                                <button onClick={() => moveToNextRound(1)}>Next Round</button>
-                        }
-                    </div>
-            }
-        </div>
+        <>
+            <div className="m-0 p-0 self-center rounded-2xl">
+                <GameTitle value={"El Juego del Pizarrón"}/>
+                <Game />
+                {
+                    roundState !== "playing" &&
+                        <div style={{marginTop: "10px"}}>
+                            {
+                                roundNumber - 1 > 0 && 
+                                    <button onClick={() => moveToNextRound(-1)}>Prev Round</button>
+                            }
+                            {
+                                roundNumber + 1 < 6 &&
+                                    <button onClick={() => moveToNextRound(1)}>Next Round</button>
+                            }
+                        </div>
+                }
+            </div>
+            <div className="absolute z-11 w-full min-w-2/5 max-w-11/12 flex align-middle justify-center">
+                <div className="w-full">
+                    <EndgameSplash show={roundState === "finished"}/>
+                </div>
+            </div>
+        </>
     );
 }
 
