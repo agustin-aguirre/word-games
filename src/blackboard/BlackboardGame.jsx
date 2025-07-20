@@ -5,6 +5,8 @@ import { getRoundConfig } from "./services/rounds";
 import GameTitle from "./components/titles/GameTitle";
 import Game from "./components/Game";
 import EndgameSplash from "./components/splashes/EndgameSplash";
+import InputActionButton from "./components/buttons/InputActionButton";
+import ActionButton from "./components/buttons/ActionButton";
 
 
 function BlackboardGame() {
@@ -33,11 +35,11 @@ function BlackboardGame() {
                         <div style={{marginTop: "10px"}}>
                             {
                                 roundNumber - 1 > 0 && 
-                                    <button onClick={() => moveToNextRound(-1)}>Prev Round</button>
+                                    <ActionButton word={"Previous Round"} onClick={() => moveToNextRound(-1)}/>
                             }
                             {
                                 roundNumber + 1 < 6 &&
-                                    <button onClick={() => moveToNextRound(1)}>Next Round</button>
+                                    <ActionButton word={"Next Round"} onClick={() => moveToNextRound(1)}/>
                             }
                         </div>
                 }
