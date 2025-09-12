@@ -1,0 +1,9 @@
+@import "../game-global-styles.css";
+
+
+.chalkboard-panel {
+    background-color: var(--color-emerald-800);
+    border-radius: 1rem;
+    color: white;
+    font-family: var(--chalk-font);
+}
