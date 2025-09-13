@@ -1,0 +1,24 @@
+.word-guesses-layout {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0.75rem;
+    padding: .65rem;
+}
+
+
+.word-guess-column {
+    letter-spacing: 0.1em;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+
+.char-inputs-layout{
+    display: grid;
+    grid-template-rows: repeat(2 1fr);
+}
+
+
+.char-buttons-layout {
+    display: grid;
+    grid-auto-flow: column;
+}

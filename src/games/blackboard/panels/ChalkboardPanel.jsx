@@ -1,10 +1,14 @@
 import "./board-panel-styles.css";
 
 
-function ChalkboardPanel({children, ...props}) {
+function ChalkboardPanel(props) {
+    const newProps = {...props}
+    const className = props.className;
+    delete newProps.className;
+
     return (
-        <div className="chalkboard-panel" {...props}>
-            {children}
+        <div className={`chalkboard-panel ${className}`} {...newProps}>
+            {props.children}
         </div>
     );
 }
