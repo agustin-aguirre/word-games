@@ -16,8 +16,8 @@ function RoundWordsGridDisplay({showAllWords}) {
 
     return (
         <div 
-        className="grid gap-3 pr-4 pt-6 pb-8 tracking-widest text-xl-2xl"
-        style={{ gridTemplateColumns: "repeat(4, 1fr)" }}
+            className="grid gap-3 pr-4 pt-6 pb-8 tracking-widest text-xl-2xl"
+            style={{ gridTemplateColumns: "repeat(4, 1fr)" }}
         >
             {
                 Object.keys(allowedWords).map((length) => (

@@ -1,12 +1,13 @@
 import "./board-panel-styles.css";
 
 
-function BoardPanel({children, ...props}) {
+function ChalkboardPanel({children, ...props}) {
     return (
-        <div className="chalkboard-panel cabin-sketch-regular">
-            <div>
-                {children}
-            </div>
+        <div className="chalkboard-panel" {...props}>
+            {children}
         </div>
     );
 }
+
+
+export default ChalkboardPanel;

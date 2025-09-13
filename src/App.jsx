@@ -1,12 +1,12 @@
 import GameOverlay from './components/overlays/game/GameOverlay';
-import BlackboardGame from "./blackboard_v1/BlackboardGame";
+import Game from "./games/blackboard/Game";
 import './App.css'
 
 
 function App() {
 	return (
 		<GameOverlay>
-			<BlackboardGame />
+			<Game />
 		</GameOverlay>
   );
 }

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { getRoundConfig } from '../services/rounds';
+import { getRoundConfig } from '../../services/rounds';
 import shuffle from '../../utils/shuffling';
 
 

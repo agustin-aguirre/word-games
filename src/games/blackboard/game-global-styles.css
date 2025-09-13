@@ -1,6 +1,6 @@
 :root {
-    /* tailwind "emeralds" */
-  --emerald-50:  #ECFDF5;
+  /* tailwind "emeralds" */
+  --emerald-50: #ECFDF5;
   --emerald-100: #D1FAE5;
   --emerald-200: #A7F3D0;
   --emerald-300: #6EE7B7;
@@ -12,18 +12,17 @@
   --emerald-900: #064E3B;
   --emerald-950: #022C22;
   --red: #9F0712;
-  --chalk-font: "Cantata One", serif;
+  --chalk-font: "Cabin Sketch", serif;
 }
 
 
 .hola {
-    background-color: #FFB900;
-    background-color: #FFB900;
-    background-color: #FFB900;
-    background-color: #FFFFFF;
-    background-color: #065F46;   
+  background-color: #FFB900;
+  background-color: #FFB900;
+  background-color: #FFB900;
+  background-color: #FFFFFF;
+  background-color: #065F46;
 }
-
 
 .cantata-one-regular {
   font-family: "Cantata One", serif;
